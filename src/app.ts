@@ -1,18 +1,26 @@
 import State from './State'
 
 //Servidor y complementos
-console.log('Server on port 3000');
-
 const PORT = process.env.PORT || 3000;
-var express = require('express');
+const express = require('express');
+const morgan = require ('morgan');
+const bodyParser = require('body-parser');
+
 var app = express();
-var server = app.listen(PORT);
+
+app.listen(PORT,function() {
+    console.log('Server on port'+" "+PORT);
+});
 
 app.set('view engine','ejs');
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
-var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json()
+
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+var jsonParser = bodyParser.json()
+
 
 //Datos de comandos ingresados
 
@@ -25,7 +33,14 @@ var calcular = {
 
 app.get('/',function(req,res){
     res.render('result',{comandos: calcular});
+   
 });
+
+app.get('/:op1',function(req,res){
+    res.render('result',{comandos: calcular});
+   var op1 = req.body.cmd;
+});
+
 
 //Post / Mandar Datos Ingresados
 
@@ -34,7 +49,7 @@ app.post('/',urlencodedParser, total);
 // Funcion
 
 function total(req,res){
-
+console.log(req.body);
     if(req.body.cmd == ""){
         res.render('result', {comandos: calcular});
     }
@@ -98,5 +113,6 @@ function total(req,res){
             
         }
     }
+    
     
 }

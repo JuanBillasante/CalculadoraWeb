@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta property="og:title" content="CalculadoraInfinita" />
   <meta property="og:type" content="website" />
-  <meta http-equiv="refresh" content="5">
+
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   
@@ -34,7 +34,7 @@
         <div class="col-sm-12">
           
           <h5>Resultado:</h5>
-          <show type="text" class="form-control" id="resultado"><%= comandos.result %></show>
+          <show type="text" name="resultado" value="" class="form-control" id="resultado"><%= comandos.result %></show>
           <h5>Comandos Ingresados:</h5>
           <show type="text" class="form-control" id="comandos"><%= comandos.str %></show>
           <h5>Ingrese un comando:</h5>
