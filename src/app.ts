@@ -36,9 +36,21 @@ app.get('/',function(req,res){
    
 });
 
-app.get('/:op1',function(req,res){
+app.get('/calc/:op1',function(req,res){
     res.render('result',{comandos: calcular});
-   var op1 = req.body.cmd;
+    console.log(req.params);
+    
+});
+
+
+app.get('/api/calculadora/:metodo/:op1/:op2',function(req,res){
+    var op1 = req.params.op1;
+    var op2 = req.params.op2;
+    var suma = parseInt(op1)+parseInt(op2);
+    res.json({'resultado': suma});
+ 
+    console.log(req.params);
+
 });
 
 
